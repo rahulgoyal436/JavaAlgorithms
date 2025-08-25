@@ -1,5 +1,3 @@
-//This test file is marked invalid as it contains compilation errors. Change the extension to of this file to .java, to manually edit its contents
-
 
 // ********RoostGPT********
 /*
@@ -104,6 +102,8 @@ Execution:
 Validation:
   This test ensures that the encrypt method correctly handles the case where the keyStreamGenerator returns a key stream of a different length, confirming that the XOR operation with the truncated key stream is performed as expected.
 
+
+roost_feedback [25/08/2025, 7:06:00 AM]:Modify\sCode\sto\sfix\sthis\serror\n[110,17]\skeyStreamGenerator\shas\sprivate\saccess\sin\scom.thealgorithms.ciphers.a5.A5Cipher
 */
 
 // ********RoostGPT********
@@ -127,7 +127,7 @@ class A5CipherEncryptTest {
         BitSet frameCounter = new BitSet(22);
         keyStreamGenerator = mock(A5KeyStreamGenerator.class);
         a5Cipher = new A5Cipher(sessionKey, frameCounter);
-        a5Cipher.keyStreamGenerator = keyStreamGenerator;
+        a5Cipher.setKeyStreamGenerator(keyStreamGenerator);
     }
     @Test
     @Tag("valid")
