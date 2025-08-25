@@ -1,5 +1,3 @@
-//This test file is marked invalid as it contains compilation errors. Change the extension to of this file to .java, to manually edit its contents
-
 
 // ********RoostGPT********
 /*
@@ -140,10 +138,14 @@ Execution:
 Validation:
   This test ensures that the encrypt method correctly encrypts a BigInteger message with a large publicKey. It verifies the basic functionality of the encryption process for a large publicKey.
 
+
+roost_feedback [25/08/2025, 6:39:39 AM]:Modify\sCode\sto\sfix\sthis\serror\n[176,59]\sreference\sto\sencrypt\sis\sambiguous\n[182,12]\smodulus\shas\sprivate\saccess\sin\scom.thealgorithms.ciphers.RSA\n[189,12]\spublicKey\shas\sprivate\saccess\sin\scom.thealgorithms.ciphers.RSA\n[196,12]\smodulus\shas\sprivate\saccess\sin\scom.thealgorithms.ciphers.RSA\n[203,12]\spublicKey\shas\sprivate\saccess\sin\scom.thealgorithms.ciphers.RSA\n[210,12]\smodulus\shas\sprivate\saccess\sin\scom.thealgorithms.ciphers.RSA\n[220,12]\spublicKey\shas\sprivate\saccess\sin\scom.thealgorithms.ciphers.RSA
 */
 
 // ********RoostGPT********
-package com.thealgorithms.ciphers;import org.junit.jupiter.api.*;
+
+package com.thealgorithms.ciphers;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
@@ -202,36 +204,31 @@ public class RsaEncrypt938Test {
     @Tag("invalid")
     @Test
     public void testEncryptWithZeroModulus() {
-        // TODO: Set modulus to zero
-        rsa.modulus = BigInteger.ZERO;
+        rsa.setModulus(BigInteger.ZERO);
         assertThrows(ArithmeticException.class, () -> rsa.encrypt(BigInteger.ONE));
     }
     @Tag("invalid")
     @Test
     public void testEncryptWithZeroPublicKey() {
-        // TODO: Set publicKey to zero
-        rsa.publicKey = BigInteger.ZERO;
+        rsa.setPublicKey(BigInteger.ZERO);
         assertThrows(ArithmeticException.class, () -> rsa.encrypt(BigInteger.ONE));
     }
     @Tag("invalid")
     @Test
     public void testEncryptWithNegativeModulus() {
-        // TODO: Set modulus to negative
-        rsa.modulus = BigInteger.valueOf(-1);
+        rsa.setModulus(BigInteger.valueOf(-1));
         assertThrows(ArithmeticException.class, () -> rsa.encrypt(BigInteger.ONE));
     }
     @Tag("invalid")
     @Test
     public void testEncryptWithNegativePublicKey() {
-        // TODO: Set publicKey to negative
-        rsa.publicKey = BigInteger.valueOf(-1);
+        rsa.setPublicKey(BigInteger.valueOf(-1));
         assertThrows(ArithmeticException.class, () -> rsa.encrypt(BigInteger.ONE));
     }
     @Tag("valid")
     @Test
     public void testEncryptWithLargeModulus() {
-        // TODO: Set large modulus
-        rsa.modulus = new BigInteger("123456789123456789123456789123456789");
+        rsa.setModulus(new BigInteger("123456789123456789123456789123456789"));
         BigInteger message = BigInteger.ONE;
         BigInteger encryptedMessage = rsa.encrypt(message);
         assertNotNull(encryptedMessage);
@@ -240,8 +237,7 @@ public class RsaEncrypt938Test {
     @Tag("valid")
     @Test
     public void testEncryptWithLargePublicKey() {
-        // TODO: Set large publicKey
-        rsa.publicKey = new BigInteger("123456789123456789123456789123456789");
+        rsa.setPublicKey(new BigInteger("123456789123456789123456789123456789"));
         BigInteger message = BigInteger.ONE;
         BigInteger encryptedMessage = rsa.encrypt(message);
         assertNotNull(encryptedMessage);
